@@ -37,3 +37,15 @@ function data(evt, selectData) {
         friendsData.style.display = "block";
     }
 }
+
+function crearGrupo() {
+    // Obtener los amigos seleccionados
+    const checkboxes = document.querySelectorAll('input[name="selected_friends[]"]:checked');
+    const selectedFriends = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+    // Establecer los IDs de los amigos seleccionados como valor de un input oculto en el formulario
+    document.getElementById('selectedFriendsInput').value = selectedFriends.join(',');
+
+    // Enviar el formulario al servidor
+    document.getElementById('crearGrupoForm').submit();
+}

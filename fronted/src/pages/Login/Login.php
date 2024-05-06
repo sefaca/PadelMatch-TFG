@@ -29,7 +29,7 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -63,4 +63,33 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         <a href="../Register/Register.php">Or Register</a>
     </form>
 </body>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>Enlaces</h3>
+            <ul>
+                <li><a href="../Home/Home.php">Inicio</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Contacto</h3>
+            <p>Dirección: Sevilla</p>
+            <p>Email: sefaca24@gmail.com</p>
+        </div>
+        <div class="footer-section">
+            <h3>Síguenos</h3>
+            <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 PadelMatch. Todos los derechos reservados.</p>
+    </div>
+</footer>
 </html>
