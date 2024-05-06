@@ -1,0 +1,22 @@
+h1 {
+    color: #1b1b3a;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}

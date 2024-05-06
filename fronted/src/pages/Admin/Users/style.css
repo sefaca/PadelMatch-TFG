@@ -1,0 +1,36 @@
+h2 {
+    color: #1b1b3a;
+    padding: 1.2rem 0 0 2.3rem;
+}
+
+table {
+    width: 95%;
+    display: block;
+    margin: auto;
+}
+
+table, tr, td, th {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th {
+    width: 500px;
+    background: #6457A6;
+    color: white;
+}
+
+td {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}

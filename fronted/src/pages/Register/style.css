@@ -1,0 +1,80 @@
+h1 {
+    color: #1b1b3a;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.process{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+}
+
+label {
+    width: 210px;
+    color: #1b1b3a;
+    font-size: 18px;
+} 
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}
+
+.checkbox {
+    border-radius: 15px;
+    background-color: #DF6C92;
+    width: 220px;
+    height: 42px;
+    padding: 1rem;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+} 
+
+.submit {
+    border-radius: 15px;
+    background-color: #6457A6;
+    width: 152px;
+    height: 40px;
+    margin: 1rem;
+    color: white;
+    border-color: white;
+    border-style: none;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Media query para dispositivos más pequeños */
+@media (max-width: 768px) {
+    .test {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+    }
+
+    label {
+        align-items: center;
+        width: auto;
+        margin-bottom: 0.5rem;
+        /* O cualquier otro ancho que desees */
+    } 
+}
+

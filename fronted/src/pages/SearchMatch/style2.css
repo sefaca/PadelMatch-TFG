@@ -1,0 +1,112 @@
+h1 {
+    color: #1B1B3A;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-form {
+    font-size: 25px;
+    align-self: center;
+}
+
+label {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}
+
+.submit {
+    border-radius: 15px;
+    background-color: #6457A6;
+    width: 182px;
+    height: 40px;
+    margin: 25px;
+    color: white;
+    border-color: white;
+    border-style: none;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 10px;
+    margin-left: 130px;
+}
+
+.match-found {
+    margin-left: 50px;
+}
+
+ul {
+    list-style: none;
+    padding: 5px;
+}
+
+li {
+    padding-top: 3.5px;
+    padding-bottom: 3.5px;
+}
+
+.reserve-button {
+    position: absolute;
+    width: 78px;
+    height: 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.reserve-button.top-left {
+    top: 385px;
+    left: 800px;
+}
+.reserve-button.top-right {
+    top: 385px;
+    right: 105px;
+}
+.reserve-button.bottom-left {
+    top: 135px;
+    left: 800px;
+}
+.reserve-button.bottom-right {
+    top: 135px;
+    right: 105px;
+}
+
+.pista {
+    padding-right: 115px;
+    padding-left: 149px;
+}
+
+.img-pista {
+    height: 250px;
+}
+
+/* Media query para dispositivos más pequeños */
+@media (max-width: 768px) {
+    .main-container {
+        display: flex;
+        flex-direction: column;
+    }
+}

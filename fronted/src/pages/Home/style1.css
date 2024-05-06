@@ -1,0 +1,108 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}
+
+
+h1 {
+    color: #1b1b3a;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: (2, 1fr);
+    gap: 1.4rem;
+    padding: 0 4rem;
+}
+
+.grid-container img {
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+.img2 {
+    width: 520px;
+}
+
+.grid-container p {
+    text-align: justify;
+    color: #6457A6;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+.buttons button {
+    background-color: #DF6C92;
+    color: white;
+    width: 19rem;
+    height: 4rem;
+    border-radius: 26px;
+    font-size: 25px;
+    margin: 17px;
+    border-color: white;
+    cursor: pointer;
+    border-style: none;
+    font-weight: bold;
+}
+
+.welcome-message {
+    text-align: center;
+}
+
+.button-logout {
+    display: block;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: #DF6C92;
+    color: white;
+    width: 90px;
+    height: 40px;
+    border-radius: 26px;
+    font-size: 18px;
+    border-color: white;
+    cursor: pointer;
+    border-style: none;
+    text-decoration: none;
+    padding: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Media query para dispositivos más pequeños */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(2, 1fr); /* Cambiar a dos columnas en pantallas más pequeñas */
+        padding: 0 2rem; /* Reducir el padding en pantallas más pequeñas */
+    }
+
+    .grid-container img {
+        width: 100%; /* Asegurarse de que las imágenes se ajusten al ancho del contenedor */
+        height: auto;
+        border-radius: 8px;
+    }
+}

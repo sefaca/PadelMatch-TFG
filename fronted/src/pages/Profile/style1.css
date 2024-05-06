@@ -1,0 +1,185 @@
+h1 {
+    color: #1b1b3a;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}
+
+.image-banner {
+    height: 33vh;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.profile-data-banner {
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+    text-align: center;
+}
+
+.profile-data-banner h3{
+    position: absolute;
+    top: -97px;
+    left: 50%;
+    transform: translateX(-50%); /* Centrar el texto horizontalmente */
+    color: white;
+    font-weight: bold;
+}
+
+.profile-data-banner h4{
+    position: absolute;
+    top: -63px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: darkgrey;
+    font-weight: bold;
+}
+
+.image-profile {
+    position: absolute;
+    border-radius: 50%;
+    top: -220px;
+    left: 50%;
+    transform: translateX(-50%); 
+    height: 110px;
+    width: 110px;
+    object-fit: cover; 
+}
+
+.main-content{
+    display: flex;
+    position: center;
+    justify-content: center;
+    padding-right: 250px;
+    padding-left: 250px;
+    padding-bottom: 20px;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-data p {
+    padding: 1rem;
+    font-size: 20px;
+}
+
+.menu-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 1rem 0rem 1.5rem 0rem;
+}
+
+.profile-data, .friends-data {
+    display: flex;
+    flex-direction: row;
+    padding-right: 5rem;
+    cursor: pointer;
+}
+
+.profile-active .profile-data,
+.friends-active .friends-data {
+    display: block;
+}
+
+.profile-data h5.active {
+    color: aqua;
+}
+
+/* Styles windows*/
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.profileContent {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding-top: 1rem;
+}
+
+.title-description-profile, .title-hand-profile, .title-skill-profile, .title-position-profile {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.title-description-profile i, .title-hand-profile i, .title-skill-profile i, .title-position-profile i {
+    padding: 1rem 1rem 1rem 0;
+}
+
+.title-description-profile p, .title-hand-profile p, .title-skill-profile p, .title-position-profile p {
+    color: #6457A6;
+    font-size: 25px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    padding-top: 65px;
+}
+
+.buttons {
+    border-radius: 15px;
+    background-color: #6457A6;
+    width: 230px;
+    margin: 0.5rem;
+    padding: 5px;
+    color: white;
+    border-color: white;
+    border-style: none;
+    font-size: 21px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+}

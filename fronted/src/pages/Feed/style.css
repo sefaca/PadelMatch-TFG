@@ -1,0 +1,11 @@
+h1 {
+    color: #1b1b3a;
+    text-align: center;
+    padding: 1.2rem;
+}
+
+.icon-nav-profile {
+    color: #ffffff; 
+    padding:12px; 
+    cursor:pointer;
+}

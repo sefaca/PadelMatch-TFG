@@ -1,0 +1,11 @@
+{
+  "name": "padelmatch",
+  "version": "1.0.0",
+  "description": "tfg",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sergio Falcon",
+  "license": "ISC"
+}

@@ -1,0 +1,31 @@
+    <form class="form" action="" method="post">
+        <label for="username">Username:</label>
+        <input class="checkbox" type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input class="checkbox" type="password" id="password" name="password" required>
+
+        <?php
+        require('../../../../backend/utils/conection.php');
+        if (isset($_POST['login_button'])) {
+            $_SESSION['validate']=false;
+            $name=$_POST['username'];
+            $password=$_POST['password'];
+            $p=base::conect()->prepare('SELECT * FROM Usuario WHERE Nombre=:n and Contrasena=:p');
+            $p->bindValue(':n',$name);
+            $p->bindValue(':p',$password);
+            $p->execute();
+            $d=$p->fetchAll(PDO::FETCH_ASSOC);
+            if ($p->rowCount()>0) {
+                $_SESSION['Nombre']=$name;
+                $_SESSION['Contrasena']=$password;
+                $_SESSION['validate']=true;
+                header('Location: ../Feed/Feed.html');
+            } else {
+                echo 'Make sure that you are registered!';
+            }
+        }
+        ?>
+
+        <input class="submit" type="submit" value="Login" name="login_button">
+    </form>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../components/Header/Header.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav class="links">
+            <a href="#">Enlace 1</a>
+            <a href="#">Enlace 2</a>
+            <a href="#">Enlace 3</a>
+            <a class="icon-nav-profile" href="../Profile/Profile.php">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <i class="fas fa-bars" style="padding:12px; margin:0;"></i>
+        </nav>
+    </header>
+        <h1>Edit Profile</h1>
+        <form class="form" action="" method="post" enctype="multipart/form-data">
+            <div class="test">    
+            <label for="name">Name:</label>
+            <input class="checkbox" type="text" id="name" name="name" required><br><br>
+            </div>
+
+            <div class="test">
+            <label for="phone">Phone name:</label>
+            <input class="checkbox" type="number" id="phone" name="phone" required><br><br>
+            </div>
+
+            <div class="test">
+            <label for="play_side">Playing position:</label>
+            <select class="options_form" id="play_side" name="play_side" required>
+                <option value="Drive">Drive</option>
+                <option value="Back">Back</option>
+                <option value="Both sides">Both sides</option>
+            </select><br><br>
+            </div>
+
+            <div class="test">
+            <label for="dominant_hand">Dominant hand:</label>
+            <select class="options_form" id="dominant_hand" name="dominant_hand" required>
+                <option value="right_handed">Right-handed</option>
+                <option value="left_handed">Left-handed</option>
+            </select><br><br>
+            </div>
+
+            <div class="process">
+                <?php
+                    require('../../../../backend/utils/conection.php');
+                    if (isset($_POST['submit_button'])) {
+                        $name_surname=$_POST['name'];
+                        $phone=$_POST['phone'];
+                        $play_side= $_POST['play_side'];
+                        $play_side_enum = "";
+                        if ($play_side == "Drive") {
+                        $play_side_enum = "Drive";
+                        } elseif ($play_side == "Back") {
+                        $play_side_enum = "Back";
+                        } else {
+                        $play_side_enum = "Both sides";
+                        }
+                        $dominant_hand=$_POST['dominant_hand'];
+                        $dominant_hand_enum = "";
+                        if ($dominant_hand == "Right-handed") {
+                        $dominant_hand_enum = "Right-handed";
+                        } else {
+                        $dominant_hand_enum = "Left-handed";
+                        }
+
+                        if (!empty($_FILES['profile_pic']['name'])) {
+                            $target_directory = "../../../../backend/utils/uploads";
+                            $target_file = $target_directory . basename($_FILES['profile_pic']['name']);
+                            if (move_uploaded_file($_FILES['profile_pic']['tmp_name'], $target_file)) {
+                                $p=base::conect()->prepare('INSERT INTO Jugador(Usuario_ID, Nombre, Telefono, LadoJuego, ManoDominante, FotoPerfil) VALUES(LAST_INSERT_ID(),:n,:t,:l,:m,:f)');
+                                $p->bindValue(':uid', $last_inserted_user_id);
+                                $p->bindValue(':n', $name_surname);
+                                $p->bindValue(':t', $phone);
+                                $p->bindValue(':l', $play_side_enum);
+                                $p->bindValue(':m', $dominant_hand_enum);
+                                $p->bindValue(':f', $target_file);
+                                $p->execute();
+                                header('Location: ../Profile/Profile.php');
+                                exit();
+                            } else {
+                                echo "Hubo un error al subir al archivo.";
+                            }
+                        } else {
+                            echo "Por favor, selecciona un archivo.";
+                        }
+                    }
+                ?>
+            </div>
+
+            <input class="submit" type="submit" value="Save changes" name="submit_button">
+        </form>
+    </body>
+</html>
