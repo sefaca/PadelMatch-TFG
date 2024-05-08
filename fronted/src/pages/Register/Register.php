@@ -4,16 +4,29 @@
     $message = "";
 
     if (isset($_POST['submit_button'])) {
-        if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['skill_level']) && !empty($_POST['profile_pic'])) {
+        if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['skill_level']) && isset($_FILES['profile_pic']) && $_FILES['profile_pic']['error'] === 0) {
             // Verificar que la contraseña y la confirmación de la contraseña coincidan
             if ($_POST['password'] === $_POST['confirm_password']) {
                 $con = base::conect();
                 
                 // Establecer el rol del usuario como "usuario normal" por defecto
                 $role = 'usuario normal';
+
+                // Procesar la imagen subida
+                $profile_pic = $_FILES['profile_pic']['name'];
+                $profile_pic_tmp = $_FILES['profile_pic']['tmp_name'];
+                $upload_dir = '../../../../backend/utils/uploads/';
+                move_uploaded_file($profile_pic_tmp, $upload_dir.$profile_pic);
+
+                // Después de mover la imagen al directorio de carga
+                $upload_dir = '../../../../backend/utils/uploads/';
+                $profile_pic_path = $upload_dir.$profile_pic;
+
                 
                 $sql = "INSERT INTO Usuario (Nombre, CorreoElectronico, Contrasena, NivelHabilidad, FotoPerfil, Rol) VALUES (:nombre, :email, :contrasena, :skill_level, :profile_pic, :role)";
                 $stmt = $con->prepare($sql);
+                // Guardar la ruta completa de la imagen en la base de datos
+                $stmt->bindParam(':profile_pic', $profile_pic_path);
                 $stmt->bindParam(':nombre', $_POST['name']);
                 $stmt->bindParam(':email', $_POST['email']);
                 
@@ -22,7 +35,7 @@
                 $stmt->bindParam(':contrasena', $password);
                 
                 $stmt->bindParam(':skill_level', $_POST['skill_level']);
-                $stmt->bindParam(':profile_pic', $_POST['profile_pic']);
+                $stmt->bindParam(':profile_pic', $profile_pic);
                 $stmt->bindParam(':role', $role);
 
                 if ($stmt->execute()) {
@@ -34,7 +47,7 @@
                 $message = "Passwords do not match";
             }
         } else {
-            $message = "All fields are required";
+            $message = "All fields are required and profile picture must be uploaded";
         }
     }
 ?>
@@ -70,7 +83,7 @@
         <h1>Enter your information</h1>
     </div>
     <div>
-        <form class="form" action="" method="post">
+        <form class="form" action="" method="post" enctype="multipart/form-data">
             <div class="test">
                 <label for="username">Name:</label>
                 <input class="checkbox" type="text" id="name" name="name" required>
