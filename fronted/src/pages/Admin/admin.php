@@ -1,23 +1,3 @@
-<?php
-    session_start();
-
-    // Verificar si el usuario está autenticado
-    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-        // Redireccionar al usuario a la página de inicio de sesión si no está autenticado
-        header('Location: ../Login/Login.php');
-        exit;
-    }
-
-    // Verificar si el rol del usuario es de administrador
-    if ($_SESSION['rol'] !== 'administrador') {
-        // Redireccionar al usuario a una página de acceso no autorizado
-        header('Location: ../UnauthorizedAccess.php');
-        exit;
-    }
-
-    // El usuario es un administrador, mostrar el contenido de la página de administrador
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

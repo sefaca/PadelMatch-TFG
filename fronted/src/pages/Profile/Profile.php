@@ -126,6 +126,10 @@
                                 echo '<h4>Dominant hand:</h4>' . $userData['ManoDominante'] . '<br>';
                                 echo '<img class="image-profile" src="' . $userData['FotoPerfil'] . '" alt="">';
 
+                                // Mostrar el botón "Panel Admin" solo si el usuario es administrador
+                                if ($userData['Rol'] === 'administrador') {
+                                    echo '<a href="../Admin/admin.php" class="buttons">Panel Admin</a>';
+                                }
 
                             } else {
                                 echo 'No se encontraron datos para este usuario.';
