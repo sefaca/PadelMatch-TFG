@@ -1,10 +1,31 @@
+<?php
+    session_start();
+
+    // Verificar si el usuario está autenticado
+    if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+        // Redireccionar al usuario a la página de inicio de sesión si no está autenticado
+        header('Location: ../Login/Login.php');
+        exit;
+    }
+
+    // Verificar si el rol del usuario es de administrador
+    if ($_SESSION['rol'] !== 'administrador') {
+        // Redireccionar al usuario a una página de acceso no autorizado
+        header('Location: ../UnauthorizedAccess.php');
+        exit;
+    }
+
+    // El usuario es un administrador, mostrar el contenido de la página de administrador
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./style1.css">
+    <link rel="stylesheet" href="./style2.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Admin Panel</title>
 </head>
 <body>
@@ -22,58 +43,89 @@
     
     <div class="admin-container">
     <h1>Panel de Administrador</h1>
-    
-    <div class="user-management">
-        <h2>Gestión de Usuarios</h2>
-        <!-- Aquí puedes mostrar la lista de usuarios registrados -->
-        <?php
-        require_once '../../../../backend/utils/conection.php';
+        
+        <div class="user-management">
+            <h2>Gestión de Usuarios</h2>
+            <?php
+            require_once '../../../../backend/utils/conection.php';
 
-        // Obtener la lista de usuarios de la base de datos
-        $con = base::conect();
-        $sql = "SELECT * FROM Usuario";
-        $stmt = $con->prepare($sql);
-        if ($stmt->execute()) {
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($users) {
-                echo '<ul>';
-                foreach ($users as $user) {
-                    echo '<li>' . $user['Nombre'] . ' - ' . $user['CorreoElectronico'] .  ' - ' . $user['NivelHabilidad'] . ' - ' . $user['Telefono'] . ' - ' . $user['LadoJuego'] . ' - ' . $user['ManoDominante'] .'</li>';
+            // Obtener la lista de usuarios de la base de datos
+            $con = base::conect();
+            $sql = "SELECT * FROM Usuario";
+            $stmt = $con->prepare($sql);
+            if ($stmt->execute()) {
+                $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($users) {
+                    echo '<table>';
+                    echo '<tr><th>Nombre</th><th>Correo Electrónico</th><th>Nivel de Habilidad</th><th>Teléfono</th><th>Lado de Juego</th><th>Mano Dominante</th><th>Acción</th></tr>';
+                    foreach ($users as $user) {
+                        echo '<tr>';
+                        echo '<td>' . $user['Nombre'] . '</td>';
+                        echo '<td>' . $user['CorreoElectronico'] . '</td>';
+                        echo '<td>' . $user['NivelHabilidad'] . '</td>';
+                        echo '<td>' . $user['Telefono'] . '</td>';
+                        echo '<td>' . $user['LadoJuego'] . '</td>';
+                        echo '<td>' . $user['ManoDominante'] . '</td>';
+                        echo '<td><a href="eliminar_usuario.php?id=' . $user['ID'] . '"><i class="fa-solid fa-trash"></i></a></td>';
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                } else {
+                    echo '<p>No se encontraron usuarios.</p>';
                 }
-                echo '</ul>';
             } else {
-                echo '<p>No se encontraron usuarios.</p>';
+                echo '<p>Error al recuperar la lista de usuarios.</p>';
             }
-        } else {
-            echo '<p>Error al recuperar la lista de usuarios.</p>';
-        }
-        ?>
-    </div>
+            ?>
+        </div>
 
-    <div class="match-management">
-        <h2>Gestión de Partidos</h2>
-        <!-- Aquí puedes mostrar la lista de partidos creados -->
-        <?php
-        // Obtener la lista de partidos de la base de datos
-        $sql = "SELECT * FROM Partido";
-        $stmt = $con->prepare($sql);
-        if ($stmt->execute()) {
-            $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            if ($matches) {
-                echo '<ul>';
-                foreach ($matches as $match) {
-                    echo '<li>' . $match['ID'] . ' - ' . $match['Fecha'] . ' - ' . $match['Hora'] . ' - ' . $match['Ubicacion'] . ' - ' . $match['NivelHabilidadRequerido'] .'</li>';
+        <div class="match-management">
+            <h2>Gestión de Partidos</h2>
+            <?php
+            require_once '../../../../backend/utils/conection.php';
+            // Obtener la lista de partidos de la base de datos
+            $sql = "SELECT * FROM Partido";
+            $stmt = $con->prepare($sql);
+            if ($stmt->execute()) {
+                $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                if ($matches) {
+                    echo '<table>';
+                    echo '<tr><th>ID</th><th>Fecha</th><th>Hora</th><th>Ubicación</th><th>Nivel de Habilidad Requerido</th><th>Acción</th></tr>';
+                    foreach ($matches as $match) {
+                        echo '<tr>';
+                        echo '<td>' . $match['ID'] . '</td>';
+                        echo '<td>' . $match['Fecha'] . '</td>';
+                        echo '<td>' . $match['Hora'] . '</td>';
+                        echo '<td>' . $match['Ubicacion'] . '</td>';
+                        echo '<td>' . $match['NivelHabilidadRequerido'] . '</td>';
+                        echo '<td><a href="eliminar_partido.php?id=' . $match['ID'] . '"><i class="fa-solid fa-trash"></i></a></td>';
+                        echo '</tr>';
+                        
+                        // Eliminar reservas asociadas al partido
+                        $sql_delete_reservas = "DELETE FROM Reserva WHERE Partido_ID = :partido_id";
+                        $stmt_delete_reservas = $con->prepare($sql_delete_reservas);
+                        $stmt_delete_reservas->bindParam(':partido_id', $match['ID'], PDO::PARAM_INT);
+                        $stmt_delete_reservas->execute();
+                        
+                        // Eliminar el partido
+                        $sql_delete_partido = "DELETE FROM Partido WHERE ID = :id";
+                        $stmt_delete_partido = $con->prepare($sql_delete_partido);
+                        $stmt_delete_partido->bindParam(':id', $match['ID'], PDO::PARAM_INT);
+                        
+                        echo '</tr>';
+                    }
+                    echo '</table>';
+                } else {
+                    echo '<p>No se encontraron partidos.</p>';
                 }
-                echo '</ul>';
             } else {
-                echo '<p>No se encontraron partidos.</p>';
+                echo '<p>Error al recuperar la lista de partidos.</p>';
             }
-        } else {
-            echo '<p>Error al recuperar la lista de partidos.</p>';
-        }
-        ?>
-    </div>
+            ?>
 </div>
+
+    </div>
+
 
     <footer class="footer">
     <div class="footer-container">
