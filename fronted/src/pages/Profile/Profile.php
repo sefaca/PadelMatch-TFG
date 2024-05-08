@@ -53,7 +53,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./style2.css">
+    <link rel="stylesheet" href="./style1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -72,30 +72,28 @@
         <div class="profile">
             <div>
                 <div class="profile-banner">
-                    <img class="image-banner" src="../../../../fronted/public/images/istockphoto-1514191101-1024x1024.jpg" alt="">
+                    <img class="image-banner" src="../../../../backend/utils/img-banner.png" alt="">
                     <div class="profile-data-banner">
                         <?php
                             if (isset($_SESSION['user_id'])) {
                                 $userId = $_SESSION['user_id'];
+                                // Obtener la ruta de la imagen de perfil del usuario desde la base de datos
                                 $userData = base::getUserDataById($userId);
                                 if ($userData) {
-                                    // Verificar si el campo de imagen de perfil está vacío
+                                    // Mostrar la imagen de perfil
                                     if (!empty($userData['FotoPerfil'])) {
-                                        echo '<img class="image-profile" src="' . $userData['FotoPerfil'] . '" alt="">';
+                                        echo '<img class="image-profile" src="../../../../backend/utils/uploads/' . $userData['FotoPerfil'] . '" alt="">';
                                     } else {
-                                        // Si está vacío, mostrar una imagen por defecto
+                                        // Si está vacío, mostrar una imagen por defecto o un mensaje indicando que no hay imagen
                                         echo '<img class="image-profile" src="../../../../backend/utils/user2.jpg" alt="Default Image">';
                                     }
+                                
                                 } else {
                                     echo 'No se encontraron datos para este usuario.';
                                 }
                             } else {
                                 echo 'Usuario no autenticado';
                             }
-                        ?>
-                        <?php
-                            // require_once '../../../../backend/utils/conection.php'; 
-
                         ?>
                     </div>
                 </div>
