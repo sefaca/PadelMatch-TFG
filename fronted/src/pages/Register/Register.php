@@ -3,21 +3,38 @@
 
     $message = "";
 
-    if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['skill_level']) && !empty($_POST['profile_pic'])) {
-        $con = base::conect();
-        $sql = "INSERT INTO Usuario(Nombre, CorreoElectronico, Contrasena, NivelHabilidad, FotoPerfil) VALUES (:nombre, :email, :contrasena, :skill_level, :profile_pic)";
-        $stmt = $con->prepare($sql);
-        $stmt->bindParam(':nombre', $_POST['name']);
-        $stmt->bindParam(':email', $_POST['email']);
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $stmt->bindParam(':contrasena', $password);
-        $stmt->bindParam(':skill_level', $_POST['skill_level']);
-        $stmt->bindParam(':profile_pic', $_POST['profile_pic']);
+    if (isset($_POST['submit_button'])) {
+        if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['skill_level']) && !empty($_POST['profile_pic'])) {
+            // Verificar que la contraseña y la confirmación de la contraseña coincidan
+            if ($_POST['password'] === $_POST['confirm_password']) {
+                $con = base::conect();
+                
+                // Establecer el rol del usuario como "usuario normal" por defecto
+                $role = 'usuario normal';
+                
+                $sql = "INSERT INTO Usuario (Nombre, CorreoElectronico, Contrasena, NivelHabilidad, FotoPerfil, Rol) VALUES (:nombre, :email, :contrasena, :skill_level, :profile_pic, :role)";
+                $stmt = $con->prepare($sql);
+                $stmt->bindParam(':nombre', $_POST['name']);
+                $stmt->bindParam(':email', $_POST['email']);
+                
+                // Cifrar la contraseña antes de almacenarla en la base de datos
+                $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $stmt->bindParam(':contrasena', $password);
+                
+                $stmt->bindParam(':skill_level', $_POST['skill_level']);
+                $stmt->bindParam(':profile_pic', $_POST['profile_pic']);
+                $stmt->bindParam(':role', $role);
 
-        if ($stmt->execute()) {
-            $message = "Successfully created new user";
+                if ($stmt->execute()) {
+                    $message = "Successfully created new user";
+                } else {
+                    $message = "Error creating user";
+                }
+            } else {
+                $message = "Passwords do not match";
+            }
         } else {
-            $message = "Sorry imputs not corrects";
+            $message = "All fields are required";
         }
     }
 ?>
@@ -55,40 +72,39 @@
     <div>
         <form class="form" action="" method="post">
             <div class="test">
-            <label for="username">Name:</label>
-            <input class="checkbox" type="text" id="name" name="name" required>
+                <label for="username">Name:</label>
+                <input class="checkbox" type="text" id="name" name="name" required>
             </div>
 
             <div class="test">
-            <label for="email">Email:</label>
-            <input class="checkbox" type="email" id="email" name="email" required>
+                <label for="email">Email:</label>
+                <input class="checkbox" type="email" id="email" name="email" required>
             </div>
 
             <div class="test">
-            <label for="skill_level">Skill Level (1-5):</label>
-            <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" required>
+                <label for="skill_level">Skill Level (1-5):</label>
+                <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" required>
             </div>
 
             <div class="test">
-            <label for="password">Password:</label>
-            <input class="checkbox" type="password" id="password" name="password" required>
+                <label for="password">Password:</label>
+                <input class="checkbox" type="password" id="password" name="password" required>
             </div>
 
             <div class="test">
-            <label for="confirm_password">Confirm Password:</label>
-            <input class="checkbox" type="password" id="confirm_password" name="confirm_password" require>
+                <label for="confirm_password">Confirm Password:</label>
+                <input class="checkbox" type="password" id="confirm_password" name="confirm_password" require>
             </div>
 
             <div class="test">
-            <label for="profile_pic">Profile picture:</label>
-            <input class="checkbox" type="file" id="profile_pic" name="profile_pic" accept="image/*"><br><br>
+                <label for="profile_pic">Profile picture:</label>
+                <input class="checkbox" type="file" id="profile_pic" name="profile_pic" accept="image/*"><br><br>
             </div>
 
             <div>
                 <input class="submit" type="submit" value="Sign In" name="submit_button">
                 <a href="../Login/Login.php">Or Login</a>
             </div>
-            
         </form>
     </div>
     <footer class="footer">
