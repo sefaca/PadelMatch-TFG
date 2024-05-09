@@ -1,28 +1,46 @@
 h1 {
-    color: #1B1B3A;
+    color: #1b1b3a;
     text-align: center;
     padding: 1.2rem;
 }
 
-h2 {
-    text-align: center;
+.logo {
+    width: 175px;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #1B1B3A;
+    padding: 5px 20px 5px 70px;
+}
+
+.process{
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+
 }
 
-.title-form {
-    font-size: 25px;
-    align-self: center;
+.test {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
 }
 
 label {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 5px;
-}
+    width: 210px;
+    color: #1b1b3a;
+    font-size: 18px;
+} 
 
 .icon-nav-profile {
     color: #ffffff; 
@@ -30,12 +48,23 @@ label {
     cursor:pointer;
 }
 
+.checkbox {
+    border-radius: 15px;
+    background-color: #DF6C92;
+    width: 220px;
+    height: 42px;
+    padding: 1rem;
+    border-style: none;
+    color: white;
+    cursor: pointer;
+} 
+
 .submit {
     border-radius: 15px;
     background-color: #6457A6;
-    width: 182px;
+    width: 152px;
     height: 40px;
-    margin: 25px;
+    margin: 1rem;
     color: white;
     border-color: white;
     border-style: none;
@@ -44,73 +73,11 @@ label {
     cursor: pointer;
 }
 
-.main-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin-top: 10px;
-    margin-left: 130px;
-}
-
-.match-found {
-    margin-left: 50px;
-}
-
-ul {
-    list-style: none;
-    padding: 5px;
-}
-
-li {
-    padding-top: 3.5px;
-    padding-bottom: 3.5px;
-}
-
-.reserve-button {
-    position: absolute;
-    width: 78px;
-    height: 30px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 15px;
-    cursor: pointer;
-}
-.reserve-button.top-left {
-    top: 385px;
-    left: 800px;
-}
-.reserve-button.top-right {
-    top: 385px;
-    right: 105px;
-}
-.reserve-button.bottom-left {
-    top: 135px;
-    left: 800px;
-}
-.reserve-button.bottom-right {
-    top: 135px;
-    right: 105px;
-}
-
-.pista {
-    padding-right: 115px;
-    padding-left: 149px;
-}
-
-.img-pista {
-    height: 250px;
-}
-
 .footer {
     background-color: #333;
     color: #fff;
     padding-top: 15px;
     margin-top: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
 }
 
 .footer-container {
@@ -171,10 +138,19 @@ li {
 
 /* Media query para dispositivos más pequeños */
 @media (max-width: 768px) {
-    .main-container {
+    .test {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
     }
+
+    label {
+        align-items: center;
+        width: auto;
+        margin-bottom: 0.5rem;
+        /* O cualquier otro ancho que desees */
+    } 
 
     .footer-container {
         justify-content: center;
@@ -186,3 +162,4 @@ li {
         margin-bottom: 20px;
     }
 }
+
