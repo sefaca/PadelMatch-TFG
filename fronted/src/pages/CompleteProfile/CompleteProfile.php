@@ -73,7 +73,7 @@
 
             <div class="test">
             <label for="skill_level">Skill Level (1-5):</label>
-            <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" >
+            <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" required>
             </div>
 
             <div class="test">

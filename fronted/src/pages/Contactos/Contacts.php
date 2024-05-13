@@ -67,7 +67,6 @@ try {
             <div class="links">
                 <a href="../CreateMatch/CreateMatch.php">Create Match</a>
                 <a href="../SearchMatch/SearchMatch.php">Search Match</a>
-                <a href="../Contactos/Contacts.php">Add Contacts</a>
                 <a class="icon-nav-profile" href="../Profile/Profile.php">
                     <i class="fa-solid fa-user"></i>
                 </a>

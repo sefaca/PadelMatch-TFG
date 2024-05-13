@@ -6,6 +6,15 @@ window.onload = function() {
     friendsData.style.display = "none";
 }
 
+function data(event, id) {
+    var i, profileContents;
+    profileContents = document.getElementsByClassName("profileContent");
+    for (i = 0; i < profileContents.length; i++) {
+        profileContents[i].style.display = "none";
+    }
+    document.getElementById(id).style.display = "block";
+}
+
 function data(evt, selectData) {
     var i, tabcontent, tablinks;
 
