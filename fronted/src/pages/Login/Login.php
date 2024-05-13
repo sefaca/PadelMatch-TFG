@@ -29,18 +29,20 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./style1.css">
+    <link rel="stylesheet" href="./style2.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <header>
-        <nav class="links">
-            <a href="../Home/Home.php">Home</a>
-            <a class="icon-nav-profile" href="../Profile/Profile.php">
-                <i class="fa-solid fa-user"></i>
-            </a>
-            <i class="fas fa-bars" style="padding:12px; margin:0;"></i>
+        <nav class="nav">
+            <img class="logo" src="../../../../backend/utils/posibleLogo1.png" />
+            <div class="links">
+                <a href="../Home/Home.php">Home</a>
+                <a class="icon-nav-profile" href="../Profile/Profile.php">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            </div>
         </nav>
     </header>
     <div>
