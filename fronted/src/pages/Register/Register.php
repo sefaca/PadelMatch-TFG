@@ -58,7 +58,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./style2.css">
+    <link rel="stylesheet" href="./style1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -67,12 +67,7 @@
         <nav class="nav">
             <img class="logo" src="../../../../backend/utils/posibleLogo1.png" />
             <div class="links">
-                <a href="../CreateMatch/CreateMatch.php">Create Match</a>
-                <a href="../SearchMatch/SearchMatch.php">Search Match</a>
-                <a href="../Contactos/Contacts.php">Add Contacts</a>
-                <a class="icon-nav-profile" href="../Profile/Profile.php">
-                    <i class="fa-solid fa-user"></i>
-                </a>
+                <a href="../Home/Home.php">Home</a>
             </div>  
         </nav>
     </header>
@@ -86,32 +81,32 @@
     </div>
     <div>
         <form class="form" action="" method="post" enctype="multipart/form-data">
-            <div class="test">
+            <div class="main-form">
                 <label for="username">Name:</label>
                 <input class="checkbox" type="text" id="name" name="name" required>
             </div>
 
-            <div class="test">
+            <div class="main-form">
                 <label for="email">Email:</label>
                 <input class="checkbox" type="email" id="email" name="email" required>
             </div>
 
-            <div class="test">
+            <div class="main-form">
                 <label for="skill_level">Skill Level (1-5):</label>
                 <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" required>
             </div>
 
-            <div class="test">
+            <div class="main-form">
                 <label for="password">Password:</label>
                 <input class="checkbox" type="password" id="password" name="password" required>
             </div>
 
-            <div class="test">
+            <div class="main-form">
                 <label for="confirm_password">Confirm Password:</label>
                 <input class="checkbox" type="password" id="confirm_password" name="confirm_password" require>
             </div>
 
-            <div class="test">
+            <div class="main-form">
                 <label for="profile_pic">Profile picture:</label>
                 <input class="checkbox" type="file" id="profile_pic" name="profile_pic" accept="image/*"><br><br>
             </div>
@@ -125,20 +120,20 @@
     <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Enlaces</h3>
+            <h3>Links</h3>
             <ul>
-                <li><a href="../Home/Home.php">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="../Home/Home.php">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>Contacto</h3>
-            <p>Dirección: Sevilla</p>
-            <p>Email: sefaca24@gmail.com</p>
+            <h3>Contact</h3>
+            <h4>Address: Seville</h4>
+            <h4>Email: sefaca24@gmail.com</h4>
         </div>
         <div class="footer-section">
-            <h3>Síguenos</h3>
+            <h3>Follow us</h3>
             <ul class="social-icons">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
@@ -150,6 +145,22 @@
     <div class="footer-bottom">
         <p>&copy; 2024 PadelMatch. Todos los derechos reservados.</p>
     </div>
-</footer>
+    </footer>
+    <script>
+        // Función para redirigir al usuario después de mostrar el mensaje
+        function redirectToLogin() {
+            window.location.href = "../Login/Login.php";
+        }
+
+        // Verificar si el mensaje no está vacío y es "Successfully created new user"
+        <?php if(!empty($message) && $message == "Successfully created new user"): ?>
+            // Mostrar el mensaje
+            setTimeout(function() {
+                // alert("Successfully created new user");
+                // Redirigir después de 1.5 segundos
+                setTimeout(redirectToLogin, 1500);
+            }, 0); // Mostrar inmediatamente después de que se cargue la página
+        <?php endif; ?>
+    </script>
 </body>
 </html>
