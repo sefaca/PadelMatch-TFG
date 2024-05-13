@@ -93,7 +93,7 @@ h1 {
     padding: 1rem 0rem 1.5rem 0rem;
 }
 
-.profile-data, .friends-data {
+.profile-data, .friends-data, .reservas-data {
     display: flex;
     flex-direction: row;
     padding-right: 5rem;
@@ -198,7 +198,8 @@ h1 {
 table {
     border-collapse: collapse;
     width: 70%;
-    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 th, td {
