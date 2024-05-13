@@ -58,3 +58,26 @@ function crearGrupo() {
     // Enviar el formulario al servidor
     document.getElementById('crearGrupoForm').submit();
 }
+
+// Función para mostrar el mensaje emergente
+function mostrarMensaje() {
+    // Crear el elemento de mensaje emergente
+    var mensaje = document.createElement('div');
+    mensaje.innerHTML = `
+        <div class="modal">
+            <div class="modal-content">
+                <p>¡Grupo creado con éxito!</p>
+                <button onclick="cerrarMensaje()">Aceptar</button>
+            </div>
+        </div>
+    `;
+    // Agregar el mensaje emergente al cuerpo del documento
+    document.body.appendChild(mensaje);
+}
+
+// Función para cerrar el mensaje emergente
+function cerrarMensaje() {
+    // Eliminar el mensaje emergente del DOM
+    var modal = document.querySelector('.modal');
+    modal.parentNode.removeChild(modal);
+}

@@ -67,17 +67,17 @@
             </div>
 
             <div class="test">
-            <label for="phone">Phone name:</label>
+            <label for="phone">*Phone name:</label>
             <input class="checkbox" type="number" id="phone" name="phone" required><br><br>
             </div>
 
             <div class="test">
-            <label for="skill_level">Skill Level (1-5):</label>
+            <label for="skill_level">*Skill Level (1-5):</label>
             <input class="checkbox" type="number" id="skill_level" name="skill_level" min="1" max="5" required>
             </div>
 
             <div class="test">
-            <label for="play_side">Playing position:</label>
+            <label for="play_side">*Playing position:</label>
             <select class="options_form" id="play_side" name="play_side" >
                 <option value="Drive">Drive</option>
                 <option value="Back">Back</option>
@@ -86,7 +86,7 @@
             </div>
 
             <div class="test">
-            <label for="dominant_hand">Dominant hand:</label>
+            <label for="dominant_hand">*Dominant hand:</label>
             <select class="options_form" id="dominant_hand" name="dominant_hand" >
                 <option value="right_handed">Right-handed</option>
                 <option value="left_handed">Left-handed</option>
@@ -112,20 +112,20 @@
     <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Enlaces</h3>
+            <h3>Links</h3>
             <ul>
-                <li><a href="../Home/Home.php">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="../Home/Home.php">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>Contacto</h3>
-            <p>Dirección: Sevilla</p>
+            <h3>Contact</h3>
+            <p>Address: Seville</p>
             <p>Email: sefaca24@gmail.com</p>
         </div>
         <div class="footer-section">
-            <h3>Síguenos</h3>
+            <h3>Follow us</h3>
             <ul class="social-icons">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>

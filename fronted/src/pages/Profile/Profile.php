@@ -32,16 +32,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nombre_grupo'])) {
                     $stmt->execute();
                 }
         
-                echo "Grupo creado exitosamente.";
+                echo "Group successfully created";
             } else {
-                echo "Error al crear el grupo: " . $stmt->errorInfo()[2]; // Mostrar el mensaje de error específico
+                echo "Error creating the group: " . $stmt->errorInfo()[2]; // Mostrar el mensaje de error específico
             }
         } else {
-            echo "No se recibieron amigos seleccionados para agregar al grupo.";
+            echo "No selected friends were received to add to the group.";
         }
     } else {
         // Mostrar un mensaje de error si el nombre del grupo está vacío
-        $error_message = "El nombre del grupo no puede estar vacío.";
+        $error_message = "The group name cannot be empty.";
     }
 }
 
@@ -86,13 +86,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                     $stmt_insert_notificacion->bindParam(':mensaje', $mensaje);
                     $stmt_insert_notificacion->execute();
                 } else {
-                    echo "Error al obtener el nombre del usuario.";
+                    echo "Error getting the user's name.";
                 }
             } else {
-                echo "Error al obtener la fecha de la reserva.";
+                echo "Error in obtaining the date of the reservation.";
             }
         }
-    } echo "Reservas enviadas exitosamente.";
+    } echo "Reservations successfully sent.";
     }    
 }
 ?>
@@ -103,8 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../components/Header/Header.css">
-    <link rel="stylesheet" href="./styleProfile.css">
+    <link rel="stylesheet" href="./styleProfile2.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css" crossorigin="anonymous">
     <title>Document</title>
 </head>
@@ -116,12 +115,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                 <a href="../CreateMatch/CreateMatch.php">Create Match</a>
                 <a href="../SearchMatch/SearchMatch.php">Search Match</a>
                 <a href="../Contactos/Contacts.php">Add Contacts</a>
-                <a class="icon-nav-profile" href="../Profile/Profile.php">
-                    <i class="fa-solid fa-user"></i>
-                </a>
-                <a class="icon-nav-profile" href="../Inbox/Inbox.php">
-                    <i class="fa-solid fa-envelope"></i>
-                </a>
+                
+            </div>
+            <div class="icons">
+                    <a class="icon-nav-profile" href="../Profile/Profile.php">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                    <a class="icon-message-profile" href="../Inbox/Inbox.php">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
             </div>
         </nav>
     </header>
@@ -145,10 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                 }
                             
                             } else {
-                                echo 'No se encontraron datos para este usuario.';
+                                echo 'No data found for this user.';
                             }
                         } else {
-                            echo 'Usuario no autenticado';
+                            echo 'Unauthenticated user.';
                         }
                     ?>
                 </div>
@@ -163,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                             <i class="fa-solid fa-user-group" style="padding-right: 1rem"></i><h5>Friends</h5>
                         </div>
                         <div class="reservas-data" onclick="data(event, 'Profile-data-3')">
-                            <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservas</h5>
+                            <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservations</h5>
                         </div>
                     </div>
                     <?php
@@ -188,10 +190,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                 }
 
                             } else {
-                                echo 'No se encontraron datos para este usuario.';
+                                echo 'No data found for this user.';
                             }
                         } else {
-                            echo 'Usuario no autenticado';
+                            echo 'Unauthenticated user';
                         }
                     ?>
                 </div>
@@ -205,21 +207,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                             <i class="fa-solid fa-user-group" style="padding-right: 1rem"></i><h5>Friends</h5>
                         </div>
                         <div class="reservas-data" onclick="data(event, 'Profile-data-3')">
-                            <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservas</h5>
+                            <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservations</h5>
                         </div>
                     </div>
                     <div class="name-profile">
-                        <h3>Amigos:</h3>
+                        <h3>Friends:</h3>
                     </div>
                     <form method="post" action="">
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Nombre</th>
+                                    <th>Name</th>
                                     <th>Skill Level</th>
-                                    <th>Lado de Juego</th>
-                                    <th>Mano Dominante</th>
-                                    <th>Seleccionar</th>
+                                    <th>Play Side</th>
+                                    <th>Dominant Hand</th>
+                                    <th>Select</th>
                                 </tr>
                             </thead>
                         <tbody>
@@ -251,20 +253,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                             }
                                             
                                         } else {
-                                            echo '<tr><td colspan="5">Aún no tienes amigos.</td></tr>';
+                                            echo '<tr><td colspan="5">You still have no friends.</td></tr>';
                                         }
                                     } else {
-                                        echo '<tr><td colspan="5">Error al recuperar la lista de amigos.</td></tr>';
+                                        echo '<tr><td colspan="5">Error retrieving the list of friends.</td></tr>';
                                     }
                                 } else {
-                                    echo '<tr><td colspan="5">Usuario no autenticado</td></tr>';
+                                    echo '<tr><td colspan="5">Unauthenticated user</td></tr>';
                                 }
                             ?>
                         </tbody>
                         </table>
-                        <label for="nombre_grupo">Nombre del Grupo:</label>
+                        <label for="nombre_grupo">Name of the Group:</label>
                         <input type="text" id="nombre_grupo" name="nombre_grupo" required>
-                        <button type="submit">Crear Grupo</button> 
+                        <button type="submit">Create Group</button> 
                     </form>
                     <?php 
                         // Mostrar mensaje de error si hubo un problema al crear el grupo
@@ -284,20 +286,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                 <i class="fa-solid fa-user-group" style="padding-right: 1rem"></i><h5>Friends</h5>
                             </div>
                             <div class="reservas-data" onclick="data(event, 'Profile-data-3')">
-                                <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservas</h5>
+                                <i class="fa-solid fa-calendar" style="padding-right: 1rem"></i><h5>Reservations</h5>
                             </div>
                         </div>
                         <div class="name-profile">
                     <div class="name-profile">
-                            <h3>Reservas:</h3>
+                            <h3>Reservations:</h3>
                         </div>
                         <form method="post" action="">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Fecha</th>
-                                        <th>Hora</th>
-                                        <th>Seleccionar</th> <!-- Nueva columna para checkboxes -->
+                                        <th>Date</th>
+                                        <th>Hour</th>
+                                        <th>Select</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -318,17 +320,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                                     echo '</tr>';
                                                 }
                                             } else {
-                                                echo '<tr><td colspan="3">No tienes reservas.</td></tr>';
+                                                echo '<tr><td colspan="3">You have no reservations.</td></tr>';
                                             }
                                         } else {
-                                            echo '<tr><td colspan="3">Error al recuperar las reservas.</td></tr>';
+                                            echo '<tr><td colspan="3">Error when recovering reserves.</td></tr>';
                                         }
                                     ?>
                                 </tbody>
                             </table>
     
                             <div class="grupos">
-                                <h3>Grupos:</h3>
+                                <h3>Groups:</h3>
                                 <select name="selected_group">
                                     <?php
                                         // Consulta SQL para obtener los grupos del usuario
@@ -342,16 +344,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
                                                     echo '<option value="' . $grupo['ID'] . '">' . $grupo['Nombre'] . '</option>';
                                                 }
                                             } else {
-                                                echo '<option value="">No se encontraron grupos.</option>';
+                                                echo '<option value="">No groups were found.</option>';
                                             }
                                         } else {
-                                            echo '<option value="">Error al recuperar los grupos.</option>';
+                                            echo '<option value="">Error when retrieving groups.</option>';
                                         }
                                     ?>
                                 </select>
                             </div>
     
-                            <button type="submit" name="submit">Enviar Reserva</button>
+                            <button type="submit" name="submit">Send Reservation</button>
                         </form>
                     </div>
                 </div>
@@ -372,20 +374,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['selected_reservas']) &
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Enlaces</h3>
+            <h3>Links</h3>
             <ul>
-                <li><a href="../Home/Home.php">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="../Home/Home.php">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>Contacto</h3>
-            <p>Dirección: Sevilla</p>
+            <h3>Contact</h3>
+            <p>Address: Seville</p>
             <p>Email: sefaca24@gmail.com</p>
         </div>
         <div class="footer-section">
-            <h3>Síguenos</h3>
+            <h3>Follow us</h3>
             <ul class="social-icons">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>

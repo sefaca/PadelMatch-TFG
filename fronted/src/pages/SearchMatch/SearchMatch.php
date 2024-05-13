@@ -90,6 +90,11 @@ if (isset($_POST['reserve_button'])) {
                 $stmt->bindParam(':reservationId', $reservationId);
                 if ($stmt->execute()) {
                     $message = "Reservation successful";
+                    // Mostrar un mensaje emergente y redirigir al usuario a su perfil después de 2 segundos
+                    echo '<script>';
+                    echo 'alert("Reservation successful");';
+                    echo 'setTimeout(function(){ window.location.href = "../Profile/Profile.php"; });';
+                    echo '</script>';
                 } else {
                     $message = "Error reserving the option";
                 }
@@ -196,20 +201,20 @@ if (isset($_POST['reserve_button'])) {
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-section">
-            <h3>Enlaces</h3>
+            <h3>Links</h3>
             <ul>
-                <li><a href="../Home/Home.php">Inicio</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Contacto</a></li>
+                <li><a href="../Home/Home.php">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         <div class="footer-section">
-            <h3>Contacto</h3>
-            <p>Dirección: Sevilla</p>
+            <h3>Contact</h3>
+            <p>Address: Seville</p>
             <p>Email: sefaca24@gmail.com</p>
         </div>
         <div class="footer-section">
-            <h3>Síguenos</h3>
+            <h3>Follow us</h3>
             <ul class="social-icons">
                 <li><a href="#"><i class="fab fa-facebook"></i></a></li>
                 <li><a href="#"><i class="fab fa-twitter"></i></a></li>
